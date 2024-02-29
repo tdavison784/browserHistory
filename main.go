@@ -38,7 +38,7 @@ func (h *BrowserHistory) Back(size int) {
 
 func (h *BrowserHistory) Forward(size int) {
 	if size > len(h.History) {
-		fmt.Printf("Cannot move %d pages forward. Going to last known page\n", size)
+		fmt.Printf("Cannot move %d pages forward. Going to last known page: %s\n", size, h.History[len(h.History)-1])
 		h.CurrentPage = len(h.History)
 	} else {
 		fmt.Printf("Going forwards to page %s", h.History[len(h.History)+size])
