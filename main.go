@@ -71,6 +71,5 @@ func main() {
 	historyAccumulator.Visit("lorcana")
 	historyAccumulator.Back(4)
 	historyAccumulator.Forward(1)
-	//historyAccumulator.Visit("Google")
 
 }
