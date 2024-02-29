@@ -5,11 +5,13 @@ import (
 	"slices"
 )
 
+// BrowserHistory struct to hold the data for our history browser sessions.
 type BrowserHistory struct {
 	History     []string
 	CurrentPage int
 }
 
+// newBrowserHistory creates our initial browser history by launching us at a homepage
 func newBrowserHistory(homepage string) *BrowserHistory {
 	fmt.Printf("Setting home page to %s\n", homepage)
 	var browserHistory BrowserHistory
@@ -18,6 +20,8 @@ func newBrowserHistory(homepage string) *BrowserHistory {
 	return &browserHistory
 }
 
+// Visit allows users to browse to new sites. It then ups a counter each time a new site is visited.
+// This counter allows us to better track and traverse the slice to get to viewed pages.
 func (h *BrowserHistory) Visit(site string) {
 	fmt.Printf("Now going to visit site %s\n", site)
 	if !slices.Contains(h.History, site) {
