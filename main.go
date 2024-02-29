@@ -33,8 +33,9 @@ func (h *BrowserHistory) Visit(site string) {
 func (h *BrowserHistory) Back(size int) {
 
 	fmt.Printf("Going back to page %s", h.History[len(h.History)-size])
-
+	h.CurrentPage = len(h.History) - size
 }
+
 func main() {
 
 	historyAccumulator := newBrowserHistory("Dashboard")
