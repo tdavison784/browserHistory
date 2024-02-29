@@ -26,7 +26,7 @@ func (h *BrowserHistory) Visit(site string) {
 		h.CurrentPage++
 
 	} else {
-		fmt.Print("Site already in slice")
+		fmt.Printf("%s already in slice. Staying on page %s\n", site, h.History[h.CurrentPage-1])
 	}
 }
 
@@ -55,7 +55,9 @@ func main() {
 	historyAccumulator.Visit("Facebook")
 	historyAccumulator.Visit("Twitter")
 	historyAccumulator.Visit("Youtube")
+	historyAccumulator.Visit("BoardGameGeek")
 	historyAccumulator.Back(2)
 	historyAccumulator.Forward(19)
+	historyAccumulator.Visit("Google")
 
 }
