@@ -30,12 +30,20 @@ func (h *BrowserHistory) Visit(site string) {
 	}
 }
 
+// Back func allows users to go back to pages they have already visited.
+// if the provided number is too large, we just go back to our homepage.
 func (h *BrowserHistory) Back(size int) {
-
-	fmt.Printf("Going back to page %s\n", h.History[len(h.History)-size])
-	h.CurrentPage = len(h.History) - size
+	if size > len(h.History) {
+		fmt.Printf("Cannopt move %d pages back. Going to homescreen.")
+		h.CurrentPage = 0
+	} else {
+		fmt.Printf("Going back to page %s\n", h.History[len(h.History)-size])
+		h.CurrentPage = len(h.History) - size
+	}
 }
 
+// Forward func allows users to move to pages they have already visited in this session
+// if too high of a number is provided we default to the latest, last know page.
 func (h *BrowserHistory) Forward(size int) {
 	if size > len(h.History) {
 		fmt.Printf("Cannot move %d pages forward. Going to last known page: %s\n", size, h.History[len(h.History)-1])
@@ -57,7 +65,7 @@ func main() {
 	historyAccumulator.Visit("Youtube")
 	historyAccumulator.Visit("BoardGameGeek")
 	historyAccumulator.Back(2)
-	historyAccumulator.Forward(19)
+	historyAccumulator.Forward(2)
 	historyAccumulator.Visit("Google")
 
 }
