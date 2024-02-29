@@ -45,11 +45,11 @@ func (h *BrowserHistory) Back(size int) {
 // Forward func allows users to move to pages they have already visited in this session
 // if too high of a number is provided we default to the latest, last know page.
 func (h *BrowserHistory) Forward(size int) {
-	if size > len(h.History) {
+	if size+h.CurrentPage >= len(h.History) {
 		fmt.Printf("Cannot move %d pages forward. Going to last known page: %s\n", size, h.History[len(h.History)-1])
 		h.CurrentPage = len(h.History)
 	} else {
-		fmt.Printf("Going forwards to page %s", h.History[len(h.History)+size])
+		fmt.Printf("Going forwards to page %s", h.History[size+h.CurrentPage])
 		h.CurrentPage = len(h.History) + size
 	}
 
@@ -64,8 +64,9 @@ func main() {
 	historyAccumulator.Visit("Twitter")
 	historyAccumulator.Visit("Youtube")
 	historyAccumulator.Visit("BoardGameGeek")
-	historyAccumulator.Back(2)
-	historyAccumulator.Forward(2)
-	historyAccumulator.Visit("Google")
+	historyAccumulator.Visit("lorcana")
+	historyAccumulator.Back(4)
+	historyAccumulator.Forward(1)
+	//historyAccumulator.Visit("Google")
 
 }
